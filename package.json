@@ -1,0 +1,15 @@
+{
+  "name": "emoji-as-a-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "run:lambda": "netlify-lambda serve ./server",
+    "build:lambda": "netlify-lambda build ./server"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "netlify-lambda": "^1.1.0",
+    "prettier": "^1.15.3"
+  }
+}
