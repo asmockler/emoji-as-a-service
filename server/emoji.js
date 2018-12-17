@@ -1,18 +1,29 @@
+import emojiMap from './emoji/map';
+
 exports.handler = function(event, context, callback) {
   const {path} = event;
 
   const emojiName = path.split('/').pop();
+  const emoji = emojiMap[emojiName];
 
-  if (emojiName == null) {
-    callback('Please pass an emoji name!');
+  if (emoji == null) {
+    callback(null, {
+      body: 'Please provide a valid emoji name!',
+      statusCode: 404,
+    });
     return;
   }
 
-  // TODO: If it is an invalid emoji name, return an error.
+  const regex = /^data:.+\/(.+);base64,(.*)$/;
+  const matches = emoji.match(regex);
+  const [, , data] = matches;
+  const imageBuffer = Buffer.from(data, 'base64');
 
-  // TODO: If it is a valid emoji name, return an emoji
   callback(null, {
     statusCode: 200,
-    body: emojiName,
+    body: imageBuffer,
+    headers: {
+      'Content-Type': 'image/png',
+    },
   });
 };
