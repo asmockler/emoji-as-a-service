@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "create-images": "node ./bin/create-images.js",
     "run:lambda": "netlify-lambda serve ./server -c ./config/webpack.config.js",
     "build:lambda": "netlify-lambda build ./server -c ./config/webpack.config.js"
   },
@@ -12,6 +13,9 @@
     "@babel/preset-typescript": "^7.1.0",
     "@types/aws-lambda": "^8.10.15",
     "@types/node": "^10.12.15",
+    "chalk": "^2.4.1",
+    "emojilib": "^2.4.0",
+    "fontkit": "^1.7.7",
     "netlify-lambda": "^1.1.0",
     "prettier": "^1.15.3",
     "typescript": "^3.2.2",
