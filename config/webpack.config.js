@@ -1,10 +1,17 @@
+var ZipPlugin = require('zip-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 module.exports = {
-  module: {
-    rules: [
+  plugins: [
+    new CopyWebpackPlugin([
       {
-        test: /\.png$/,
-        use: ['url-loader'],
+        from: '../images',
+        to: 'images',
       },
-    ],
-  },
+    ]),
+
+    new ZipPlugin({
+      filename: 'emoji.zip',
+    }),
+  ],
 };

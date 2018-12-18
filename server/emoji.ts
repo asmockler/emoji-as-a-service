@@ -1,5 +1,7 @@
+import fs from 'fs';
+import path from 'path';
 import {APIGatewayEvent, APIGatewayProxyResult} from 'aws-lambda';
-import {images} from './images';
+import {lib as emojilib} from 'emojilib';
 
 const NOT_FOUND: APIGatewayProxyResult = {
   statusCode: 404,
@@ -9,30 +11,43 @@ const NOT_FOUND: APIGatewayProxyResult = {
 exports.handler = async function(event: APIGatewayEvent) {
   const {path: endpoint} = event;
 
-  const emojiName = endpoint.split('/').pop();
+  const emojiParam = endpoint.split('/').pop();
 
-  if (emojiName == null || emojiName === 'emoji') {
+  if (emojiParam == null || emojiParam === 'emoji') {
     return NOT_FOUND;
   }
 
-  const image = images[emojiName];
+  let emojiName = decodeURIComponent(emojiParam);
 
-  if (image == null) {
+  if (emojilib[emojiName] == null) {
+    Object.keys(emojilib).some(currentCanonicalName => {
+      let found = false;
+      const {keywords} = emojilib[currentCanonicalName];
+
+      keywords.some(keyword => {
+        if (keyword === emojiName) {
+          found = true;
+          emojiName = currentCanonicalName;
+          return true;
+        }
+
+        return false;
+      });
+
+      return found;
+    });
+  }
+
+  if (emojilib[emojiName] == null) {
     return NOT_FOUND;
   }
 
-  const regex = /^data:.+\/(.+);base64,(.*)$/;
-  const matches = image.match(regex);
-
-  if (matches == null) {
-    return NOT_FOUND;
-  }
-
-  const [, , data] = matches;
+  const imagePath = path.resolve(`./images/${emojiName}.png`);
+  const data = fs.readFileSync(imagePath);
 
   return {
     statusCode: 200,
-    body: data,
+    body: data.toString('base64'),
     headers: {
       'Content-Type': 'image/png',
     },

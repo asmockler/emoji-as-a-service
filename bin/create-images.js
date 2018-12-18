@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const {lib: emojilib} = require('emojilib');
 
 const fontPath = '/System/Library/Fonts/Apple Color Emoji.ttc';
-const imagesPath = path.resolve('server', 'images');
+const imagesPath = path.resolve('images');
 
 if (!fs.existsSync(fontPath)) {
   console.error(chalk.red(`\n🚑 Couldn't find emoji font at ${fontPath}.\n`));

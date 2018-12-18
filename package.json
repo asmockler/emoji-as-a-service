@@ -14,11 +14,12 @@
     "@types/aws-lambda": "^8.10.15",
     "@types/node": "^10.12.15",
     "chalk": "^2.4.1",
+    "copy-webpack-plugin": "^4.6.0",
     "emojilib": "^2.4.0",
     "fontkit": "^1.7.7",
     "netlify-lambda": "^1.1.0",
     "prettier": "^1.15.3",
     "typescript": "^3.2.2",
-    "url-loader": "^1.1.2"
+    "zip-webpack-plugin": "^3.0.0"
   }
 }
