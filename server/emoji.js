@@ -14,13 +14,12 @@ exports.handler = async function(event) {
   }
 
   const regex = /^data:.+\/(.+);base64,(.*)$/;
-  const matches = sunglasses.match(regex);
+  const matches = image.match(regex);
   const [, , data] = matches;
-  const imageBuffer = Buffer.from(data, 'base64');
 
   return {
     statusCode: 200,
-    body: imageBuffer.toString('base64'),
+    body: data,
     headers: {
       'Content-Type': 'image/png',
     },
