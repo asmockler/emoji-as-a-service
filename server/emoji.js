@@ -1,29 +1,29 @@
-import emojiMap from './emoji/map';
+import {images} from './images';
 
-exports.handler = function(event, context, callback) {
-  const {path} = event;
+exports.handler = function(event) {
+  const {path: endpoint} = event;
 
-  const emojiName = path.split('/').pop();
-  const emoji = emojiMap[emojiName];
+  const emojiName = endpoint.split('/').pop();
+  const image = images[emojiName];
 
-  if (emoji == null) {
-    callback(null, {
-      body: 'Please provide a valid emoji name!',
+  if (image == null) {
+    return {
       statusCode: 404,
-    });
-    return;
+      body: 'Please provide a valid emoji name!',
+    };
   }
 
   const regex = /^data:.+\/(.+);base64,(.*)$/;
-  const matches = emoji.match(regex);
+  const matches = sunglasses.match(regex);
   const [, , data] = matches;
   const imageBuffer = Buffer.from(data, 'base64');
 
-  callback(null, {
+  return {
     statusCode: 200,
-    body: imageBuffer,
+    body: imageBuffer.toString('base64'),
     headers: {
       'Content-Type': 'image/png',
     },
-  });
+    isBase64Encoded: true,
+  };
 };

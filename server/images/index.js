@@ -1,5 +1,5 @@
 import sunglasses from './sunglasses.png';
 
-export default {
+export const images = {
   sunglasses,
 };
