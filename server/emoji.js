@@ -1,6 +1,6 @@
 import {images} from './images';
 
-exports.handler = function(event) {
+exports.handler = async function(event) {
   const {path: endpoint} = event;
 
   const emojiName = endpoint.split('/').pop();
