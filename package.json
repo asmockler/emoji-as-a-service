@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "create-images": "node ./bin/create-images.js",
-    "run:lambda": "netlify-lambda serve ./server -c ./config/webpack.config.js",
-    "build:lambda": "netlify-lambda build ./server -c ./config/webpack.config.js"
+    "run:lambda": "netlify-lambda serve ./functions -c ./config/webpack.config.js",
+    "build:lambda": "netlify-lambda build ./functions -c ./config/webpack.config.js"
   },
   "dependencies": {},
   "devDependencies": {

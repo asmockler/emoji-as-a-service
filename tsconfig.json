@@ -8,5 +8,5 @@
     "noUnusedParameters": true,
     "esModuleInterop": true
   },
-  "include": ["./config/typescript", "./server"]
+  "include": ["./config/typescript", "./functions"]
 }
