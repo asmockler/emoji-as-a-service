@@ -2,3 +2,9 @@
   command = "yarn build"
   functions = "dist/functions"
   publish = "dist/docs"
+
+[[redirects]]
+  from = "/:emoji"
+  to = "/.netlify/functions/emoji/:emoji"
+  status = 200
+  force = false
