@@ -1,12 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
+    "baseUrl": ".",
+    "jsx": "react",
     "module": "commonjs",
     "allowJs": false,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "*": ["*"]
+    }
   },
-  "include": ["./config/typescript", "./functions"]
+  "include": ["./config/typescript", "./functions", "./docs/**/*"]
 }

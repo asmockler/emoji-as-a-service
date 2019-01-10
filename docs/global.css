@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, San Francisco, Roboto,
+    Segoe UI, Helvetica Neue, sans-serif;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+body {
+  background: #f4f6f8;
+  padding: 20px 10px 10px;
+}
+
+#main {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  max-width: 500px;
+  padding: 10px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+a {
+  color: dodgerblue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p {
+  line-height: 22px;
+  font-size: 16px;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}

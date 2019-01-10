@@ -4,22 +4,42 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "create-images": "node ./bin/create-images.js",
+    "start": "concurrently \"npm:run:lambda\" \"npm:run:docs\" -n lambda,docs --kill-others",
+    "build": "yarn clean && yarn build:docs && yarn build:lambda",
+    "clean": "rm -rf dist",
     "run:lambda": "netlify-lambda serve ./functions -c ./config/webpack.config.js",
-    "build:lambda": "netlify-lambda build ./functions -c ./config/webpack.config.js"
+    "build:lambda": "netlify-lambda build ./functions -c ./config/webpack.config.js",
+    "run:docs": "parcel serve --no-autoinstall ./docs/index.html -d ./dist/docs",
+    "build:docs": "parcel build ./docs/index.html -d ./dist/docs",
+    "create-images": "node ./bin/create-images.js"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@emotion/core": "^10.0.5",
+    "@emotion/styled": "^10.0.5",
+    "clipboard": "^2.0.4",
+    "emojilib": "^2.4.0",
+    "normalize.css": "^8.0.1",
+    "react": "^16.7.0-alpha.2",
+    "react-dom": "^16.7.0-alpha.2"
+  },
   "devDependencies": {
     "@babel/preset-typescript": "^7.1.0",
     "@types/aws-lambda": "^8.10.15",
+    "@types/clipboard": "^2.0.1",
     "@types/node": "^10.12.15",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
     "chalk": "^2.4.1",
+    "concurrently": "^4.1.0",
     "copy-webpack-plugin": "^4.6.0",
-    "emojilib": "^2.4.0",
     "fontkit": "^1.7.7",
     "netlify-lambda": "^1.1.0",
+    "parcel-bundler": "^1.11.0",
     "prettier": "^1.15.3",
     "typescript": "^3.2.2",
     "zip-webpack-plugin": "^3.0.0"
+  },
+  "alias": {
+    "docs/utilities": "./docs/utilities"
   }
 }
