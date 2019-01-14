@@ -4,7 +4,7 @@
   publish = "dist/docs"
 
 [[redirects]]
-  from = "/:emoji"
+  from = "/i/:emoji"
   to = "/.netlify/functions/emoji/:emoji"
   status = 200
   force = false
