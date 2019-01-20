@@ -38,7 +38,8 @@ const Footer = styled.div({
 
 export function App() {
   const [emojiInput, setEmojiInput] = React.useState<string>('mount_fuji');
-  const [validEmoji, setValidEmoji] = React.useState<boolean>(true);
+
+  const canonicalName = canonicalEmojiName(emojiInput);
 
   return (
     <Container>
@@ -56,25 +57,14 @@ export function App() {
         id="playground"
         onChange={event => {
           const {value} = event.currentTarget;
-
-          const normalizedValue = value.toLowerCase();
-
-          setEmojiInput(normalizedValue);
-
-          const canonicalName = canonicalEmojiName(normalizedValue);
-
-          if (canonicalName == null) {
-            setValidEmoji(false);
-          } else {
-            setValidEmoji(true);
-          }
+          setEmojiInput(value.toLowerCase());
         }}
       />
 
-      {validEmoji ? (
-        <Success emoji={emojiInput} />
-      ) : (
+      {canonicalName == null ? (
         <NoResult currentInput={emojiInput} />
+      ) : (
+        <Success emoji={emojiInput} />
       )}
 
       <Footer>
