@@ -56,9 +56,12 @@ export function App() {
         id="playground"
         onChange={event => {
           const {value} = event.currentTarget;
-          setEmojiInput(value);
 
-          const canonicalName = canonicalEmojiName(value);
+          const normalizedValue = value.toLowerCase();
+
+          setEmojiInput(normalizedValue);
+
+          const canonicalName = canonicalEmojiName(normalizedValue);
 
           if (canonicalName == null) {
             setValidEmoji(false);
