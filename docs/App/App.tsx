@@ -37,7 +37,7 @@ const Footer = styled.div({
 });
 
 export function App() {
-  const [emojiInput, setEmojiInput] = React.useState<string>('mount_fuji');
+  const [emojiInput, setEmojiInput] = React.useState<string>('sparkles');
 
   const canonicalName = canonicalEmojiName(emojiInput);
 
